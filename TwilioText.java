@@ -37,22 +37,23 @@ public class TwilioText {
 		// Get the main account (The one we used to authenticate the client)
 		Account mainAccount = client.getAccount();
 
-		// Get all accounts including sub accounts
-		AccountList accountList = client.getAccounts();
-
-
-		for (Account a : accountList) {
-			System.out.println(a.getFriendlyName());
-		}
-
-		// Send an sms (using the new messages endpoint)
+	List<NameValuePair> params = new ArrayList<NameValuePair>(); 
+	 params.add(new BasicNameValuePair("To", "9142991173")); 
+	 params.add(new BasicNameValuePair("From", "+19142054512")); 
+	 params.add(new BasicNameValuePair("Body", "Hello from from cs6432015 from Fabian Patino"));   
+ 
+	 MessageFactory messageFactory = client.getAccount().getMessageFactory(); 
+	 Message message = messageFactory.create(params); 
+	 System.out.println(message.getSid()); 
+		/* Send an sms (using the new messages endpoint)
 		MessageFactory messageFactory = mainAccount.getMessageFactory();
 		List<NameValuePair> messageParams = new ArrayList<NameValuePair>();
 		messageParams.add(new BasicNameValuePair("To", "9142991173")); // Replace with a valid phone number
 		messageParams.add(new BasicNameValuePair("From", "9142054512")); // Replace with a valid phone
 		// number in your account
-		messageParams.add(new BasicNameValuePair("Body", "Hello from from cs6432015 from Fabian Patino"));
+		messageParams.add(new BasicNameValuePair("Body", ""));
 		messageFactory.create(messageParams);
+		System.out.println(message.getSid()); */  
 	}
 	
 }
